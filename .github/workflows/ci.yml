@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Check Terraform formatting
-      run: cd terrafrom && terraform fmt -check
+      run: cd terraform && terraform fmt -check
       continue-on-error: true
 
     - name: Fail if changes require formatting
