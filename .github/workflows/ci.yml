@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  terraform_format_check:
+  format:
     runs-on: ubuntu-latest
 
     steps:

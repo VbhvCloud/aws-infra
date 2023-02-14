@@ -1,6 +1,7 @@
 .idea
 .vscode
 
+
 # Local .terraform directories
 **/.terraform
 
@@ -37,3 +38,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 *.tfvar
+*.DS_Store
