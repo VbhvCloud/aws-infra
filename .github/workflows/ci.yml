@@ -1,0 +1,34 @@
+name: Terraform Format Check
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  terraform_format_check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check Terraform formatting
+      run: cd terrafrom && terraform fmt -check
+      continue-on-error: true
+
+    - name: Fail if changes require formatting
+      run: |
+        if [ $? -ne 0 ]; then
+          echo "Terraform code requires formatting. Please run 'terraform fmt' and commit the changes."
+          exit 1
+        fi
