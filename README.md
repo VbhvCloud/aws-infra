@@ -25,6 +25,7 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
    3. private_subnet_count
    4. vpc_cidr_block
    5. region
+   6. create_cidr
 - Run the terraform init command to initialize the Terraform configuration file.
 
       terraform init
