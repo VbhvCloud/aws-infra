@@ -8,4 +8,4 @@ output "public_route_id" {
 
 output "instance_public_link" {
   value = "http://${aws_instance.ec2_instance.public_ip}:8000/healthz"
-}
+} 

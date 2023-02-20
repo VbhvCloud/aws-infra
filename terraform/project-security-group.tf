@@ -1,5 +1,5 @@
 resource "aws_security_group" "security_group" {
-  name_prefix = "application"
+  name = "application"
   depends_on = [
     aws_vpc.vpc
   ]
