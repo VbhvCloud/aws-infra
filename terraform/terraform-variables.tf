@@ -36,6 +36,32 @@ variable "private_subnet_cidr" {
   default = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+
+}
+
+variable "instance_volume_size" {
+  type    = number
+  default = 50
+}
+
+variable "app_port" {
+  type    = number
+  default = 8000
+}
+
+variable "ami_id" {
+  type    = string
+  default = "ami-0b08d24057e709775"
+}
+
+variable "instance_volume_type" {
+  type    = string
+  default = "gp2"
+}
+
 locals {
   public_subnets  = var.create_cidr ? [for i in range(1, var.public_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i)] : var.public_subnet_cidr
   private_subnets = var.create_cidr ? [for i in range(1, var.private_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i + var.public_subnet_count)] : var.private_subnet_cidr
