@@ -1,7 +1,7 @@
 SHELL := /bin/zsh
 
 init: 
-	cd terraform && terraform init
+	cd terraform && terraform init -upgrade
 
 fmt: init
 	cd terraform && terraform fmt

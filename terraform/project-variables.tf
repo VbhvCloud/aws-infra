@@ -62,6 +62,40 @@ variable "instance_volume_type" {
   default = "gp2"
 }
 
+variable "db_engine" {
+  type    = string
+  default = "postgres"
+}
+
+variable "db_instance" {
+  type    = string
+  default = "db.t3.micro"
+}
+
+variable "db_multi_az" {
+  type    = bool
+  default = false
+}
+
+variable "db_instance_identifier" {
+  type    = string
+  default = "csye6225"
+}
+
+variable "db_username" {
+  type    = string
+  default = "csye6225"
+}
+
+variable "db_password" {
+  type = string
+}
+
+variable "db_name" {
+  type    = string
+  default = "csye6225"
+}
+
 locals {
   public_subnets  = var.create_cidr ? [for i in range(1, var.public_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i)] : var.public_subnet_cidr
   private_subnets = var.create_cidr ? [for i in range(1, var.private_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i + var.public_subnet_count)] : var.private_subnet_cidr
