@@ -96,6 +96,16 @@ variable "db_name" {
   default = "csye6225"
 }
 
+variable "zone_id" {
+  type    = string
+  default = "Z05580821BA4GTGQSU1G0"
+}
+
+variable "a_record_name" {
+  type    = string
+  default = "dev.vaibhavmahajan.me"
+}
+
 locals {
   public_subnets  = var.create_cidr ? [for i in range(1, var.public_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i)] : var.public_subnet_cidr
   private_subnets = var.create_cidr ? [for i in range(1, var.private_subnet_count + 1) : cidrsubnet(var.vpc_cidr_block, 8, i + var.public_subnet_count)] : var.private_subnet_cidr
