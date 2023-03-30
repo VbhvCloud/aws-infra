@@ -8,10 +8,8 @@ resource "aws_iam_policy" "WebAppS3" {
         Action = [
           "s3:PutObject",
           "s3:GetObject",
-          "s3:DeleteObject",
-          "s3:PutObjectAcl",
-          "s3:GetObjectAcl"
-        ]
+          "s3:DeleteObject"
+        ],
         Effect = "Allow"
         Resource = [
           "arn:aws:s3:::${aws_s3_bucket.private.id}",
@@ -40,5 +38,10 @@ resource "aws_iam_role" "EC2-CSYE6225" {
 
 resource "aws_iam_role_policy_attachment" "WebAppS3_policy_attachment" {
   policy_arn = aws_iam_policy.WebAppS3.arn
+  role       = aws_iam_role.EC2-CSYE6225.name
+}
+
+resource "aws_iam_role_policy_attachment" "CloudWatch_policy_attachment" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.EC2-CSYE6225.name
 }
