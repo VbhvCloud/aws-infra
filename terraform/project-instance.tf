@@ -40,11 +40,8 @@ resource "null_resource" "reboot_instance" {
     on_failure  = fail
     interpreter = ["/bin/bash", "-c"]
     command     = <<EOT
-        echo -e "\x1B[31m Warning! Restarting instance having id ${aws_instance.ec2_instance.id}.................. \x1B[0m"
         sleep 20
         aws ec2 reboot-instances --instance-ids ${aws_instance.ec2_instance.id} --profile ${var.profile}
-        echo "***************************************Rebooted****************************************************"
-
      EOT
   }
   #   this setting will trigger script every time,change it something needed
