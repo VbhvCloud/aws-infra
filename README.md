@@ -8,9 +8,15 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
 - A private route table with all private subnets attached to it
 - A public route in the public route table with the destination CIDR block 0.0.0.0/0 and the internet gateway created above as the target
 - A database instance in private subnet, its parameter group, and its subnet group
-- ec2 instance, its instance profile
-- A policy and role to connect ec2 instance to s3
+- ec2 instance profile
+- A policy and role to connect ec2 instance to s3 and cloudwatch
 - S3 bucket with random name
+- An Autoscaling template, group and scale up and scale down policies with alarm.
+- An A record with load balancer DNS
+- An Application load balancer with traget group and listener
+- Load balancer security group with internet access
+- Application security group which is accessible through load balancer
+- Database security group which is accessible through Instance.
 
 
 ## Prerequisites
@@ -33,10 +39,11 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
    7. instance_type
    8. instance_volume_size
    9. app_port
-   10. ami_id
-   11. instance_volume_type
-   12. db_engine
-   13. db_password
+   10. instance_volume_type
+   11. db_engine
+   12. db_password
+   13. a_record_name
+   
 - Run the terraform init command to initialize the Terraform configuration file.
 
       terraform init
