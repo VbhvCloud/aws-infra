@@ -7,9 +7,5 @@ output "public_route_id" {
 }
 
 output "instance_public_link" {
-  value = "http://${var.a_record_name}:8000/healthz"
+  value = "http://${var.a_record_name}/healthz"
 }
-
-output "db_instance_ip" {
-  value = aws_db_instance.main.address
-} 

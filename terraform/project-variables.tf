@@ -52,11 +52,6 @@ variable "app_port" {
   default = 8000
 }
 
-variable "ami_id" {
-  type    = string
-  default = "ami-0b08d24057e709775"
-}
-
 variable "instance_volume_type" {
   type    = string
   default = "gp2"
@@ -94,11 +89,6 @@ variable "db_password" {
 variable "db_name" {
   type    = string
   default = "csye6225"
-}
-
-variable "zone_id" {
-  type    = string
-  default = "Z05580821BA4GTGQSU1G0"
 }
 
 variable "a_record_name" {
