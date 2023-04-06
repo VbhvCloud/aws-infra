@@ -19,8 +19,7 @@ resource "aws_launch_template" "asg_launch_template" {
   name                    = "asg_launch_config"
   image_id                = data.aws_ami.custom_ami.id
   instance_type           = var.instance_type
-  key_name                = "ec2"
-  disable_api_termination = true
+  disable_api_termination = false
   iam_instance_profile {
     name = aws_iam_instance_profile.EC2-CSYE6225_instance_profile.name
   }
