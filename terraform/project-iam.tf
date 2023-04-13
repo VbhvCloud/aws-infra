@@ -45,3 +45,8 @@ resource "aws_iam_role_policy_attachment" "CloudWatch_policy_attachment" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.EC2-CSYE6225.name
 }
+
+resource "aws_iam_instance_profile" "EC2-CSYE6225_instance_profile" {
+  name = "EC2-CSYE6225_Role_Instance_profile"
+  role = aws_iam_role.EC2-CSYE6225.name
+}
