@@ -7,5 +7,5 @@ output "public_route_id" {
 }
 
 output "instance_public_link" {
-  value = "http://${var.a_record_name}/healthz"
+  value = "https://${var.a_record_name}/healthz"
 }

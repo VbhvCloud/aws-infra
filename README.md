@@ -14,9 +14,10 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
 - An Autoscaling template, group and scale up and scale down policies with alarm.
 - An A record with load balancer DNS
 - An Application load balancer with traget group and listener
-- Load balancer security group with internet access
+- Load balancer security group with internet access and running on HTTPS
 - Application security group which is accessible through load balancer
 - Database security group which is accessible through Instance.
+- Keys to encrypt ebs and database
 
 
 ## Prerequisites
@@ -56,6 +57,10 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
 - After you are finished, run the terraform destroy command to delete the resources.
 
       terraform destroy
+
+- To Import the ssl certificate to cretificate manager in aws 
+
+      aws acm import-certificate --profile <profile_name> --region us-east-1 --certificate fileb://<cretificate_file_in_crt> --private-key fileb://<private_key_in_pem> --certificate-chain fileb://<ca-bundle_file>
 
 ## Conclusion
 

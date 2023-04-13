@@ -1,4 +1,9 @@
-# Create an Application Load Balancer
+data "aws_acm_certificate" "issued" {
+  domain   = var.a_record_name
+  statuses = ["ISSUED"]
+}
+
+
 resource "aws_lb" "alb" {
   name               = "webapp-lb"
   internal           = false
@@ -34,11 +39,14 @@ resource "aws_lb_target_group" "tg" {
 # Attach the target group to the Application Load Balancer
 resource "aws_lb_listener" "alb_listener" {
   load_balancer_arn = aws_lb.alb.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = 443
+  protocol          = "HTTPS"
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.tg.arn
   }
+  certificate_arn = data.aws_acm_certificate.issued.arn
+  ssl_policy      = "ELBSecurityPolicy-2016-08"
+
 }
