@@ -1,7 +1,7 @@
 resource "aws_db_parameter_group" "postgres_parameter_group" {
-  name        = "postgres-14-parameter-group"
-  family      = "postgres14"
-  description = "Custom parameter group for PostgreSQL 14"
+  name        = "postgres-15-parameter-group"
+  family      = "postgres15"
+  description = "Custom parameter group for PostgreSQL 15"
 }
 
 resource "aws_db_subnet_group" "default" {

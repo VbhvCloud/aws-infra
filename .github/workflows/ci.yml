@@ -1,4 +1,4 @@
-name: Terraform Format Check
+name: Terraform Format Check and Validate
 
 # Enable Buildkit and let compose use it to speed up image building
 env:
@@ -11,11 +11,11 @@ on:
       - main
 
 concurrency:
-  group: ${{ github.head_ref || github.run_id }}
+  group: ${{ github.head_ref || github.run_id }} 
   cancel-in-progress: true
 
 jobs:
-  format:
+  terraform-format:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,5 +24,18 @@ jobs:
 
     - name: Check Terraform formatting
       uses: dflook/terraform-fmt-check@v1
+      with:
+        path: terraform
+
+    
+  terraform-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Validate Terraform modules
+      uses: devops-infra/action-terraform-validate@v0.3
       with:
         path: terraform

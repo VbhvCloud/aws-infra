@@ -27,7 +27,15 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "encryption_config
   }
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
+resource "aws_s3_bucket_ownership_controls" "bucket_ownership" {
   bucket = aws_s3_bucket.private.id
-  acl    = "private"
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "bucket_acl" {
+  depends_on = [aws_s3_bucket_ownership_controls.bucket_ownership]
+  bucket     = aws_s3_bucket.private.id
+  acl        = "private"
 }
