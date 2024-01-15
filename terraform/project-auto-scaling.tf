@@ -7,6 +7,8 @@ data "template_file" "user_data" {
     db_host       = aws_db_instance.main.address
     db_name       = var.db_name
     aws_s3_bucket = aws_s3_bucket.private.id
+    aws_region    = var.region
+    sns_topic_arn = aws_sns_topic.image_updates.arn
   }
 }
 

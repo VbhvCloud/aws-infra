@@ -9,6 +9,9 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
 - A public route in the public route table with the destination CIDR block 0.0.0.0/0 and the internet gateway created above as the target
 - A database instance in private subnet, its parameter group, and its subnet group
 - ec2 instance profile
+- DynamoDB table to track email sent by lambda
+- Lambda function to send mail and track email in dynamodb
+- SNS topic 
 - A policy and role to connect ec2 instance to s3 and cloudwatch
 - S3 bucket with random name
 - An Autoscaling template, group and scale up and scale down policies with alarm.
@@ -44,6 +47,9 @@ This Terraform configuration file sets up a Virtual Private Cloud (VPC) in AWS w
    11. db_engine
    12. db_password
    13. a_record_name
+   14. mailgun_api_key
+   15. mailgun_domain 
+   16. mailgun_sender 
    
 - Run the terraform init command to initialize the Terraform configuration file.
 
